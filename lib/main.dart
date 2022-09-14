@@ -29,11 +29,33 @@ class CatalougeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemNames = ["Shortsword", "Daggers", "Shield", "Healing Potion"];
-    return ListView(children: [
-      Text(itemNames[0]),
-      Text(itemNames[1]),
-      Text(itemNames[2]),
-      Text(itemNames[3]),
-    ]);
+    //move declarations into a different class.
+    const COMMON = Text(
+      "Common",
+      style: TextStyle(fontStyle: FontStyle.italic),
+      textAlign: TextAlign.left,
+    );
+    const UNCOMMON = Text(
+      "Uncommon",
+      style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic),
+      textAlign: TextAlign.left,
+    );
+    final itemRarities = [COMMON, COMMON, COMMON, UNCOMMON];
+    return ListView.builder(
+        itemCount: itemNames.length * 2,
+        itemBuilder: ((context, index) {
+          if (index.isOdd) {
+            return const Divider();
+          }
+          final newIndex = index ~/ 2;
+          return ListTile(
+            title:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(itemNames[newIndex]),
+              itemRarities[newIndex],
+            ]),
+            trailing: const Icon(Icons.list),
+          );
+        }));
   }
 }
