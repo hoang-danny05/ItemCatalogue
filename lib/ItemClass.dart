@@ -19,8 +19,20 @@ class GameItem {
     style: TextStyle(color: Colors.green, fontStyle: FontStyle.italic),
     textAlign: TextAlign.left,
   );
+  //static variables
+  static List<GameItem> items = [];
+  static bool isSetup = false;
   //static methods
+  static GameItem hasName(String name) {
+    if (isSetup == false) Setup();
+    for (int i = 0; i < items.length; i++) {
+      if (items[i].name == name) return items[i];
+    }
+    throw ("oh no!");
+  }
+
   static List<GameItem> Setup() {
+    if (isSetup) return items;
     //initialize stuff here
     final itemNames = ["Shortsword", "Daggers", "Shield", "Healing Potion"];
     final descriptions = [
@@ -32,16 +44,16 @@ class GameItem {
     final itemRarities = [COMMON, COMMON, COMMON, UNCOMMON];
     final damageList = [10, 7, 0, -15];
     final costs = [50, 30, 75, 60];
-    List<GameItem> returnList = <GameItem>[];
     for (int i = 0; i < 4; i++) {
-      returnList.add(GameItem(
+      items.add(GameItem(
           name: itemNames[i],
           rarity: itemRarities[i],
           description: descriptions[i],
           damage: damageList[i],
           cost: costs[i]));
     }
-    return returnList;
+    isSetup = true;
+    return items;
   }
 
   //attributes or properties
