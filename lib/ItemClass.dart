@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class GameItem {
-  GameItem(this.name, this.rarity, this.description, this.damage, this.cost);
+  GameItem(
+      {this.name: "",
+      this.rarity: const Text(""),
+      this.description: "",
+      this.damage: 0,
+      this.cost: 0});
 
   //static constants
   static const COMMON = Text(
@@ -29,8 +34,12 @@ class GameItem {
     final costs = [50, 30, 75, 60];
     List<GameItem> returnList = <GameItem>[];
     for (int i = 0; i < 4; i++) {
-      returnList.add(GameItem(itemNames[i], itemRarities[i], descriptions[i],
-          damageList[i], costs[i]));
+      returnList.add(GameItem(
+          name: itemNames[i],
+          rarity: itemRarities[i],
+          description: descriptions[i],
+          damage: damageList[i],
+          cost: costs[i]));
     }
     return returnList;
   }
