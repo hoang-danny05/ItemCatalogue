@@ -28,7 +28,7 @@ class GameItem {
     for (int i = 0; i < items.length; i++) {
       if (items[i].name == name) return items[i];
     }
-    throw ("oh no!");
+    throw (IndexError);
   }
 
   static List<GameItem> Setup() {

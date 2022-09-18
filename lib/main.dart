@@ -7,7 +7,6 @@ void main() => runApp(CatalogueApp());
 
 //root of application
 class CatalogueApp extends StatelessWidget {
-  //const CatalogueApp({super.key});
   final CatalogueRouterDelegate _routerDelegate =
       CatalogueRouterDelegate(GlobalKey<NavigatorState>());
   final CatalogueRouteInformationParser _routeInformationParser =
@@ -48,19 +47,7 @@ class CatalogueRoutePath {
   bool get isDetailsPage => item != null;
 }
 
-//   static Scaffold home() { //default page of user
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: const Text("D&D Item Catalouge"),
-//         ),
-//         body: const CatalougeView(),
-//       );
-//   }
-//   static Scaffold details(GameItem item) { //details of an item
-
-//   }
-// }
-// parse route
+// parse the url route
 class CatalogueRouteInformationParser
     extends RouteInformationParser<CatalogueRoutePath> {
   @override
