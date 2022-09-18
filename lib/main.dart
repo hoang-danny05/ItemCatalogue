@@ -218,8 +218,8 @@ class UnknownScreen extends StatelessWidget {
 
 //view of an item's details
 class ItemDetailsPage extends StatelessWidget {
-  GameItem item;
-  ItemDetailsPage({super.key, required this.item});
+  final GameItem item;
+  const ItemDetailsPage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -227,12 +227,18 @@ class ItemDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(item.name),
       ),
-      body: Column(
+      body: Row(
         children: [
-          item.rarity,
-          Text(item.description),
-          Text('Damage: ${item.damage}'),
-          Text('Cost: ${item.cost} GP'),
+          Image(image: AssetImage(item.imageUrl)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              item.rarity,
+              Text(item.description),
+              Text('Damage: ${item.damage}'),
+              Text('Cost: ${item.cost} GP'),
+            ],
+          ),
         ],
       ),
     );
