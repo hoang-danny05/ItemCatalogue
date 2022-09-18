@@ -228,13 +228,34 @@ class ItemDetailsPage extends StatelessWidget {
         title: Text(item.name),
       ),
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Image(image: AssetImage(item.imageUrl)),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image(
+                image: AssetImage(item.imageUrl),
+                height: 100,
+                width: MediaQuery.of(context).size.width * (1 / 3),
+              ),
+              const Divider(),
+              item.rarity,
+            ],
+          ),
+          const Divider(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              item.rarity,
-              Text(item.description),
+              //item.rarity,
+              Container(
+                width: MediaQuery.of(context).size.width * (2 / 3),
+                alignment: const Alignment(-1.0, -1.0),
+                child: Text(
+                  item.description,
+                  overflow: TextOverflow.clip,
+                ),
+              ),
               Text('Damage: ${item.damage}'),
               Text('Cost: ${item.cost} GP'),
             ],

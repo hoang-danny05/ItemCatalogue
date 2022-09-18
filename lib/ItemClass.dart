@@ -56,11 +56,11 @@ class GameItem {
       "This set of half-plate has a special ability. At the user's will, they may force any enemies nearby 10 feet away.",
     ];
     final imageLinks = [
-      '/assets/shortsword.png',
-      '/assets/Dagger.png',
-      '/assets/shield.png',
-      '/assets/healingpotion.png',
-      '/assets/halfplate.jpeg'
+      './lib/assets/shortsword.png',
+      './lib/assets/Dagger.png',
+      './lib/assets/shield.png',
+      './lib/assets/healingpotion.png',
+      './lib/assets/halfplate.jpeg',
     ];
     final itemRarities = [_common, _common, _common, _uncommon, _rare];
     final damageList = [10, 7, 0, -15, 10];
