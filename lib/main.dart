@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'ItemClass.dart';
 
@@ -56,7 +54,7 @@ class CatalogueRouteInformationParser
     final url = Uri.parse(routeInformation.location ?? '/');
 
     // Handle '/'
-    if (url.pathSegments.length == 0) {
+    if (url.pathSegments.isEmpty) {
       return CatalogueRoutePath.home();
     }
 
@@ -75,12 +73,12 @@ class CatalogueRouteInformationParser
   @override
   RouteInformation restoreRouteInformation(CatalogueRoutePath path) {
     if (path.isUnknown) {
-      return RouteInformation(location: '/404');
+      return const RouteInformation(location: '/404');
     }
     if (path.isDetailsPage) {
       return RouteInformation(location: '/item/${path.item!.name}');
     }
-    return RouteInformation(location: '/');
+    return const RouteInformation(location: '/');
   }
 }
 
@@ -95,9 +93,8 @@ class CatalogueRouterDelegate extends RouterDelegate<CatalogueRoutePath>
   GameItem? _selectedItem; //internal state
   bool show404 = false;
 
-  final List<GameItem> _items = GameItem.Setup();
-
   //make route path
+  @override
   CatalogueRoutePath get currentConfiguration {
     if (show404) {
       return CatalogueRoutePath.unknown();
@@ -110,6 +107,7 @@ class CatalogueRouterDelegate extends RouterDelegate<CatalogueRoutePath>
 //implement function of making app state => navigator state
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     _onPopPage(Route route, dynamic result) {
       if (!route.didPop(result)) {
         return false;
@@ -136,7 +134,7 @@ class CatalogueRouterDelegate extends RouterDelegate<CatalogueRoutePath>
               key: ValueKey('UnknownPage'), child: UnknownScreen())
         else if (_selectedItem != null)
           MaterialPage(
-              key: ValueKey('${_selectedItem}'),
+              key: ValueKey(_selectedItem),
               child: ItemDetailsPage(item: _selectedItem!))
       ],
       onPopPage: _onPopPage,
@@ -234,10 +232,21 @@ class ItemDetailsPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image(
-                image: AssetImage(item.imageUrl),
-                height: 100,
-                width: MediaQuery.of(context).size.width * (1 / 3),
+              Container(
+                //add padding
+                // ignore: todo
+                // TODO: make formatting declarative instead of imperative.
+                padding: EdgeInsets.only(
+                  left: (1 / 12) * MediaQuery.of(context).size.width,
+                  right: (1 / 12) * MediaQuery.of(context).size.width,
+                  top: (1 / 20) * MediaQuery.of(context).size.height,
+                  bottom: (1 / 20) * MediaQuery.of(context).size.height,
+                ),
+                child: Image(
+                  image: AssetImage(item.imageUrl),
+                  height: MediaQuery.of(context).size.height * (1 / 3),
+                  width: MediaQuery.of(context).size.width * (1 / 3),
+                ),
               ),
               const Divider(),
               item.rarity,
@@ -249,15 +258,31 @@ class ItemDetailsPage extends StatelessWidget {
             children: [
               //item.rarity,
               Container(
-                width: MediaQuery.of(context).size.width * (2 / 3),
+                padding: EdgeInsets.only(
+                    top: (1 / 20) * MediaQuery.of(context).size.height),
+                width: MediaQuery.of(context).size.width * (6 / 12),
                 alignment: const Alignment(-1.0, -1.0),
                 child: Text(
                   item.description,
                   overflow: TextOverflow.clip,
                 ),
               ),
-              Text('Damage: ${item.damage}'),
-              Text('Cost: ${item.cost} GP'),
+              Text(
+                // text for damage
+                'Damage: ${item.damage}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              Text(
+                'Cost: ${item.cost} GP',
+                style: const TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
             ],
           ),
         ],
