@@ -1,0 +1,50 @@
+[
+    {
+        "name" : "Shortsword",
+        "description" : "A standard Adventurer's sword.",
+        "rarity" : "Common",
+        "cost" : 50,
+        "damage" : 10,
+        "imageUrl" : "./lib/assets/shortsword.png"
+    },
+    {
+        "name" : "Daggers",
+        "description" : "Light and sharp, these blades are made for the cunning or quick.",
+        "rarity" : "Common",
+        "cost" : 30,
+        "damage" : 7,
+        "imageUrl" : "./lib/assets/Dagger.png"
+    },
+    {
+        "name" : "Shield",
+        "description" : "Being heavy and sturdy, this shield is made to take many hits.",
+        "rarity" : "Common",
+        "cost" : 75,
+        "damage" : 0,
+        "imageUrl" : "./lib/assets/shield.png"
+    },
+    {
+        "name" : "Healing Potion",
+        "description" : "Red and sweet, this concotion is made to heal the drinker's wounds up.",
+        "rarity" : "Common",
+        "cost" : 60,
+        "damage" : -15,
+        "imageUrl" : "./lib/assets/healingpotion.png"
+    },
+    {
+        "name" : "Force Plate Armor",
+        "description" : "This set of half-plate has a special ability. At the user's will, they may force any enemies nearby 10 feet away.",
+        "rarity" : "Common",
+        "cost" : 500,
+        "damage" : 10,
+        "imageUrl" : "./lib/assets/halfplate.jpeg"
+    },
+    {
+        "name" : "",
+        "description" : "",
+        "rarity" : "",
+        "cost" : "",
+        "damage" : "",
+        "imageUrl" : ""
+    }
+]

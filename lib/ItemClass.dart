@@ -26,6 +26,11 @@ class GameItem {
     style: TextStyle(color: Colors.blue, fontStyle: FontStyle.italic),
     textAlign: TextAlign.left,
   );
+  static const _legendary = Text(
+    "Legendary",
+    style: TextStyle(color: Colors.blue, fontStyle: FontStyle.italic),
+    textAlign: TextAlign.left,
+  )
   //static variables
   static List<GameItem> items = [];
   static bool isSetup = false;
@@ -41,30 +46,30 @@ class GameItem {
   static List<GameItem> Setup() {
     if (isSetup) return items;
     //initialize stuff here
-    final itemNames = [
+    const itemNames = [
       "Shortsword",
       "Daggers",
       "Shield",
       "Healing Potion",
       "Force Plate Armor"
     ];
-    final descriptions = [
+    const descriptions = [
       "A standard Adventurer's sword.",
       "Light and sharp, these blades are made for the cunning or quick.",
       "Being heavy and sturdy, this shield is made to take many hits.",
       "Red and sweet, this concotion is made to heal the drinker's wounds up.",
       "This set of half-plate has a special ability. At the user's will, they may force any enemies nearby 10 feet away.",
     ];
-    final imageLinks = [
+    const imageLinks = [
       './lib/assets/shortsword.png',
       './lib/assets/Dagger.png',
       './lib/assets/shield.png',
       './lib/assets/healingpotion.png',
       './lib/assets/halfplate.jpeg',
     ];
-    final itemRarities = [_common, _common, _common, _uncommon, _rare];
-    final damageList = [10, 7, 0, -15, 10];
-    final costs = [50, 30, 75, 60, 500];
+    const itemRarities = [_common, _common, _common, _uncommon, _rare];
+    const damageList = [10, 7, 0, -15, 10];
+    const costs = [50, 30, 75, 60, 500];
     for (int i = 0; i < itemNames.length; i++) {
       items.add(GameItem(
           name: itemNames[i],
